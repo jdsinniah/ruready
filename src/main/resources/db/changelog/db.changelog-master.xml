@@ -111,4 +111,26 @@
 
     </changeSet>
 
+    <changeSet id="6" author="James Dario Sinniah">
+        <createTable tableName="exam">
+            <column name="id" type="int" defaultOnNull="false"/>
+            <column name="name" type="varchar(150)" defaultOnNull="false"/>
+            <column name="subject_id" type="int" defaultOnNull="false"/>
+        </createTable>
+        <addPrimaryKey schemaName="public"
+                       tableName="exam"
+                       columnNames="id"
+                       constraintName="pk_exam"/>
+
+        <addAutoIncrement columnDataType="int"
+                          tableName="exam"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"/>
+
+        <addForeignKeyConstraint baseTableName="exam" baseColumnNames="subject_id" constraintName="exam_subject_constraint"
+                                 referencedTableName="subject"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
 </databaseChangeLog>

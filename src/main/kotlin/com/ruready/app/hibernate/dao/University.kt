@@ -14,7 +14,7 @@ class University(
                 cascade = [CascadeType.ALL],
                 orphanRemoval = true
         )
-        val courses: List<Course>?
+        val courses: List<Course>
 ): AbstractKPersistable<Long>()
 
 @Repository
