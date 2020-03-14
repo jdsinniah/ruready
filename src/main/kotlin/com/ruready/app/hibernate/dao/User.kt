@@ -2,7 +2,6 @@ package com.ruready.app.hibernate.dao
 
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
-import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -27,6 +26,7 @@ class User(
 ): AbstractKPersistable<Long> ()
 
 @Repository
-interface UserRepository: CrudRepository<User, Long> {
-        fun findUserByEmail(email: String): Optional<User>
+interface UserRepository<PK>: CrudRepository<User, PK> {
+        fun findUserById(id: PK): User?
+        fun findUserByEmail(email: String): User?
 }

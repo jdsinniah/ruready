@@ -19,4 +19,4 @@ class SignedUpExam(
 ): AbstractKPersistable<Long>()
 
 @Repository
-interface SignedUpExamRepository: CrudRepository<SignedUpExam, Long>
+interface SignedUpExamRepository<PK>: CrudRepository<SignedUpExam, PK>

@@ -18,4 +18,4 @@ class Question(
 ): AbstractKPersistable<Long>()
 
 @Repository
-interface QuestionRepository: CrudRepository<Question, Long>
+interface QuestionRepository<PK>: CrudRepository<Question, PK>

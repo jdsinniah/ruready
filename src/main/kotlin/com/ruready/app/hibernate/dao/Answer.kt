@@ -15,4 +15,4 @@ class Answer(
 ): AbstractKPersistable<Long>()
 
 @Repository
-interface AnswerRepository: CrudRepository<Answer, Long>
+interface AnswerRepository<PK>: CrudRepository<Answer, PK>

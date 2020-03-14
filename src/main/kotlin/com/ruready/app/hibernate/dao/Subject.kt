@@ -18,5 +18,5 @@ class Subject(
 ): AbstractKPersistable<Long>()
 
 @Repository
-interface SubjectRepository: CrudRepository<Subject, Long>
+interface SubjectRepository<PK>: CrudRepository<Subject, PK>
 

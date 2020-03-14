@@ -18,4 +18,4 @@ class University(
 ): AbstractKPersistable<Long>()
 
 @Repository
-interface UniversityRepository: CrudRepository<University, Long>
+interface UniversityRepository<PK>: CrudRepository<University, PK>

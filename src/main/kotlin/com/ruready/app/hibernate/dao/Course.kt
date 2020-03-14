@@ -20,4 +20,4 @@ class Course(
 ): AbstractKPersistable<Long>()
 
 @Repository
-interface CourseRepository: CrudRepository<Course, Long>
+interface CourseRepository<PK>: CrudRepository<Course, PK>

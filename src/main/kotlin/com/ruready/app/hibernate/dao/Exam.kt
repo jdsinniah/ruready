@@ -24,4 +24,4 @@ class Exam(
 ): AbstractKPersistable<Long>()
 
 @Repository
-interface ExamRepository: CrudRepository<Exam, Long>
+interface ExamRepository<PK>: CrudRepository<Exam, PK>
