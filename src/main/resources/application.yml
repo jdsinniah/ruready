@@ -17,4 +17,7 @@ spring:
     enabled: true
     change-log: classpath:/db/changelog/db.changelog-master.xml
   jpa:
+    properties:
+      hibernate:
+        default_schema: public
     open-in-view: true
