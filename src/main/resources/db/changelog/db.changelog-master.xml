@@ -180,4 +180,37 @@
                                  referencedColumnNames="id"/>
     </changeSet>
 
+    <changeSet id="9" author="James Dario Sinniah">
+        <createTable tableName="question">
+            <column name="id" type="int" defaultOnNull="false"/>
+            <column name="question" type="text" defaultOnNull="false"/>
+            <column name="exam_id" type="int" defaultOnNull="false"/>
+        </createTable>
+        <addPrimaryKey schemaName="public"
+                       tableName="question"
+                       columnNames="id"
+                       constraintName="pk_question"/>
+        <addAutoIncrement columnDataType="int"
+                          tableName="question"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"/>
+        <addForeignKeyConstraint baseTableName="question" baseColumnNames="exam_id"
+                                 constraintName="question_exam_id"
+                                 referencedTableName="exam"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="10" author="James Dario Sinniah">
+        <createTable tableName="answer">
+            <column name="id" type="int" defaultOnNull="false"/>
+            <column name="answer" type="text" defaultOnNull="false"/>
+            <column name="question_id" type="int" defaultOnNull="false"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="answer" baseColumnNames="question_id"
+                                 constraintName="answer_question_id"
+                                 referencedTableName="question"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
 </databaseChangeLog>

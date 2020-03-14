@@ -14,7 +14,13 @@ class Exam(
                 cascade = [CascadeType.ALL],
                 orphanRemoval = true
         )
-        val signedUpExams: List<SignedUpExam>?
+        val signedUpExams: List<SignedUpExam>?,
+        @OneToMany(
+                mappedBy = "exam",
+                cascade = [CascadeType.ALL],
+                orphanRemoval = true
+        )
+        val question: List<Question>?
 ): AbstractKPersistable<Long>()
 
 @Repository
