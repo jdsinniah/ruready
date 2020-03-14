@@ -7,11 +7,11 @@
     
     <changeSet id="0" author="James Dario Sinniah">
         <createTable schemaName="public" tableName="user">
-            <column name="id" type="int" defaultOnNull="false" />
-            <column name="name" type="varchar(50)" defaultOnNull="false" />
-            <column name="lastname" type="varchar(50)" defaultOnNull="false" />
-            <column name="email" type="varchar(50)" defaultOnNull="false" />
-            <column name="password" type="char(64)" defaultOnNull="false" />
+            <column name="id" type="int" defaultOnNull="false"/>
+            <column name="name" type="varchar(50)" defaultOnNull="false"/>
+            <column name="lastname" type="varchar(50)" defaultOnNull="false"/>
+            <column name="email" type="varchar(50)" defaultOnNull="false"/>
+            <column name="password" type="char(64)" defaultOnNull="false"/>
         </createTable>
 
         <addPrimaryKey schemaName="public"
@@ -30,6 +30,30 @@
         <addColumn tableName="user">
             <column name="certified" type="boolean" defaultValueBoolean="false"/>
         </addColumn>
+    </changeSet>
+    
+    <changeSet id="2" author="James Dario Sinniah">
+        <createTable tableName="university">
+            <column name="id" type="int" defaultOnNull="false" />
+            <column name="name" type="varchar(100)" defaultOnNull="false"/>
+        </createTable>
+
+        <addPrimaryKey schemaName="public"
+                       tableName="university"
+                       columnNames="id"
+                       constraintName="pk_university"/>
+
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"
+                          tableName="university"/>
+        <addColumn tableName="user">
+            <column name="university_id" type="int" defaultOnNull="true"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="user" baseColumnNames="university_id" constraintName="user_university_constraint"
+                                 referencedTableName="university"
+                                 referencedColumnNames="id"/>
     </changeSet>
 
 </databaseChangeLog>
