@@ -92,4 +92,23 @@
                                  referencedColumnNames="id"/>
     </changeSet>
 
+    <changeSet id="5" author="James Dario Sinniah">
+        <createTable tableName="subject">
+            <column name="id" type="int" defaultOnNull="false"/>
+            <column name="subject" type="varchar(70)" defaultOnNull="false"/>
+        </createTable>
+
+        <addPrimaryKey schemaName="public"
+                       tableName="subject"
+                       columnNames="id"
+                       constraintName="pk_subject"/>
+
+        <addAutoIncrement columnDataType="int"
+                          tableName="subject"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"/>
+
+    </changeSet>
+
 </databaseChangeLog>
