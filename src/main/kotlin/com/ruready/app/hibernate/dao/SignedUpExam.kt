@@ -14,8 +14,8 @@ class SignedUpExam(
         @ManyToOne(fetch = FetchType.LAZY)
         val exam: Exam,
         val signedUpAt: Date,
-        val startedAt: Date,
-        val finishedAt: Date
+        val startedAt: Date?,
+        val finishedAt: Date?
 ): AbstractKPersistable<Long>()
 
 @Repository
