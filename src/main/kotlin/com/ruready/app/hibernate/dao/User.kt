@@ -3,9 +3,7 @@ package com.ruready.app.hibernate.dao
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 import java.util.*
-import javax.persistence.Entity
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 @Entity
 class User(
@@ -19,7 +17,13 @@ class User(
         val university: University?,
         @ManyToOne
         @JoinColumn(name = "course_id", nullable = true)
-        val course: Course?
+        val course: Course?,
+        @OneToMany(
+                mappedBy = "user",
+                cascade = [CascadeType.ALL],
+                orphanRemoval = true
+        )
+        val signedUpExams: List<SignedUpExam>?
 ): AbstractKPersistable<Long> ()
 
 @Repository

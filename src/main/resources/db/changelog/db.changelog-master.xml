@@ -133,4 +133,51 @@
                                  referencedColumnNames="id"/>
     </changeSet>
 
+    <changeSet id="7" author="James Dario Sinniah">
+        <createTable tableName="course_subject">
+            <column name="course_id" type="int" defaultOnNull="false"/>
+            <column name="subject_id" type="int" defaultOnNull="false"/>
+        </createTable>
+        <addPrimaryKey schemaName="public"
+                       tableName="course_subject"
+                       columnNames="course_id, subject_id"
+                       constraintName="pk_course_subject"/>
+        <addForeignKeyConstraint baseTableName="course_subject" baseColumnNames="course_id"
+                                 constraintName="course_subject_constraint"
+                                 referencedTableName="course"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="course_subject" baseColumnNames="subject_id"
+                                 constraintName="subject_course_constraint"
+                                 referencedTableName="subject"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+    
+    <changeSet id="8" author="James Dario Sinniah">
+        <createTable tableName="signed_up_exam">
+            <column name="id" type="int" defaultOnNull="false"/>
+            <column name="user_id" type="int" defaultOnNull="false"/>
+            <column name="exam_id" type="int" defaultOnNull="false"/>
+            <column name="signed_up_at" type="datetime" defaultOnNull="false"/>
+            <column name="started_at" type="datetime" defaultOnNull="true"/>
+            <column name="finished_at" type="datetime" defaultOnNull="true"/>
+        </createTable>
+        <addPrimaryKey schemaName="public"
+                       tableName="signed_up_exam"
+                       columnNames="id"
+                       constraintName="pk_user_exam"/>
+        <addAutoIncrement columnDataType="int"
+                          tableName="signed_up_exam"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"/>
+        <addForeignKeyConstraint baseTableName="signed_up_exam" baseColumnNames="user_id"
+                                 constraintName="signed_up_exam_exam_constraint"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="signed_up_exam" baseColumnNames="exam_id"
+                                 constraintName="signed_up_exam_user_constraint"
+                                 referencedTableName="exam"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
 </databaseChangeLog>
