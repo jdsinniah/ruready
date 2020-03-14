@@ -14,16 +14,16 @@ class User(
         val certified: Boolean = false,
         @ManyToOne
         @JoinColumn(name = "university_id", nullable = true)
-        val university: University?,
+        val university: University? = null,
         @ManyToOne
         @JoinColumn(name = "course_id", nullable = true)
-        val course: Course?,
+        val course: Course? = null,
         @OneToMany(
                 mappedBy = "user",
                 cascade = [CascadeType.ALL],
                 orphanRemoval = true
         )
-        val signedUpExams: List<SignedUpExam>?
+        val signedUpExams: List<SignedUpExam>? = null
 ): AbstractKPersistable<Long> ()
 
 @Repository
