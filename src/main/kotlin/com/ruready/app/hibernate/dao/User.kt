@@ -16,7 +16,10 @@ class User(
         val certified: Boolean = false,
         @ManyToOne
         @JoinColumn(name = "university_id", nullable = true)
-        val university: University?
+        val university: University?,
+        @ManyToOne
+        @JoinColumn(name = "course_id", nullable = true)
+        val course: Course?
 ): AbstractKPersistable<Long> ()
 
 @Repository

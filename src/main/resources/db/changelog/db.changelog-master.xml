@@ -56,4 +56,40 @@
                                  referencedColumnNames="id"/>
     </changeSet>
 
+    <changeSet id="3" author="James Dario Sinniah">
+        <createTable tableName="course">
+            <column name="id" type="int" defaultOnNull="false" />
+            <column name="name" type="varchar(100)" defaultOnNull="false"/>
+        </createTable>
+
+        <addPrimaryKey schemaName="public"
+                       tableName="course"
+                       columnNames="id"
+                       constraintName="pk_course"/>
+
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"
+                          tableName="course"/>
+
+        <addColumn tableName="user">
+            <column name="course_id" type="int" defaultOnNull="true"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="user" baseColumnNames="course_id" constraintName="user_course_constraint"
+                                 referencedTableName="course"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+
+    <changeSet id="4" author="James Dario Sinniah">
+        <addColumn tableName="course">
+            <column name="university_id" type="int" defaultOnNull="false"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="course" baseColumnNames="university_id" constraintName="course_university_constraint"
+                                 referencedTableName="university"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
 </databaseChangeLog>

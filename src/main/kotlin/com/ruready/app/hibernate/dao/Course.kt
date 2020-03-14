@@ -5,9 +5,9 @@ import org.springframework.stereotype.Repository
 import javax.persistence.Entity
 
 @Entity
-class University(
+class Course(
         val name: String
 ): AbstractKPersistable<Long>()
 
 @Repository
-interface UniversityRepository: CrudRepository<University, Long>
+interface CourseRepository: CrudRepository<Course, Long>
