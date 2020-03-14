@@ -14,10 +14,6 @@ abstract class AbstractKPersistable<PK : Serializable?>(
         val id: PK? = null
 ) {
 
-    fun isNew(): Boolean {
-        return null == this.id
-    }
-
     override fun toString(): String {
         return String.format("Entity of type %s with id: %s", this.javaClass.name, this.id)
     }
