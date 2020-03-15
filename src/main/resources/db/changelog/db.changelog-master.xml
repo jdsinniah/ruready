@@ -213,4 +213,8 @@
                                  referencedColumnNames="id"/>
     </changeSet>
 
+    <changeSet id="11" author="James Dario Sinniah">
+        <addUniqueConstraint tableName="user" columnNames="email"/>
+    </changeSet>
+
 </databaseChangeLog>

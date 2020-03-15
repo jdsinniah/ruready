@@ -9,7 +9,7 @@ class User(
         val name: String,
         val lastname: String,
         val email: String,
-        val password: String,
+        var password: String,
         val certified: Boolean = false,
         @ManyToOne
         @JoinColumn(name = "university_id", nullable = true)
