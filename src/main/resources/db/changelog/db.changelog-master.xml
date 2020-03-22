@@ -217,4 +217,42 @@
         <addUniqueConstraint tableName="user" columnNames="email"/>
     </changeSet>
 
+    <changeSet id="12" author="James Dario Sinniah">
+        <createTable tableName="role">
+            <column name="id" type="int" defaultOnNull="false"/>
+            <column name="name" type="varchar(40)" defaultOnNull="false"/>
+        </createTable>
+        <addPrimaryKey schemaName="public"
+                       tableName="role"
+                       columnNames="id"
+                       constraintName="pk_role"/>
+        <addAutoIncrement columnDataType="int"
+                          tableName="role"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"/>
+    </changeSet>
+
+    <changeSet id="13" author="James Dario Sinniah">
+        <dropColumn tableName="user"
+                    schemaName="public"
+                    columnName="certified"/>
+
+        <createTable tableName="user_role">
+            <column name="user_id" type="int" defaultOnNull="false"/>
+            <column name="role_id" type="int" defaultOnNull="false"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="user_role" baseColumnNames="user_id"
+                                 constraintName="user_role_id"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="user_role" baseColumnNames="role_id"
+                                 constraintName="role_user_id"
+                                 referencedTableName="role"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+
 </databaseChangeLog>

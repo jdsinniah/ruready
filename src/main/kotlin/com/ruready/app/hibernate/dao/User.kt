@@ -1,6 +1,7 @@
 package com.ruready.app.hibernate.dao
 
 import org.springframework.data.repository.CrudRepository
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Repository
 import javax.persistence.*
 
@@ -9,8 +10,13 @@ class User(
         val name: String,
         val lastname: String,
         val email: String,
-        var password: String,
-        val certified: Boolean = false,
+        private var password: String,
+        private var enabled: Boolean,
+        @ManyToMany
+        @JoinTable(name = "user_role",
+                joinColumns = [JoinColumn(name = "user_id")],
+                inverseJoinColumns = [JoinColumn(name = "role_id")])
+        val roles: Set<Role>,
         @ManyToOne
         @JoinColumn(name = "university_id", nullable = true)
         val university: University? = null,
@@ -23,7 +29,40 @@ class User(
                 orphanRemoval = true
         )
         val signedUpExams: List<SignedUpExam>? = null
-): AbstractKPersistable<Long> ()
+): UserDetails, AbstractKPersistable<Long> () {
+
+        override fun getAuthorities(): Set<Role> {
+                return this.roles
+        }
+
+        override fun isEnabled(): Boolean {
+                return this.enabled
+        }
+
+        override fun getUsername(): String {
+                return this.email
+        }
+
+        override fun isCredentialsNonExpired(): Boolean {
+                return true
+        }
+
+        override fun getPassword(): String {
+                return this.password
+        }
+
+        fun setPassword(password: String) {
+                this.password = password
+        }
+
+        override fun isAccountNonExpired(): Boolean {
+                return true
+        }
+
+        override fun isAccountNonLocked(): Boolean {
+                return true
+        }
+}
 
 @Repository
 interface UserRepository<PK>: CrudRepository<User, PK> {

@@ -33,6 +33,9 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.liquibase:liquibase-core")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("commons-codec:commons-codec")
+	implementation("com.auth0:java-jwt:3.4.0")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
@@ -40,7 +43,6 @@ dependencies {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 	testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
-	implementation("commons-codec:commons-codec")
 
 }
 

@@ -5,6 +5,7 @@ import com.ruready.app.hibernate.dao.UserRepository
 import com.ruready.app.service.`interface`.UserService
 import org.apache.commons.codec.digest.DigestUtils
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Service
 
 @Service
@@ -21,4 +22,11 @@ class UserService(
     override fun getAllUsers() = userRepository.findAll().toList()
 
     override fun getUserByEmail(email: String): User? = userRepository.findUserByEmail(email)
+
+    override fun loadUserByUsername(username: String?): UserDetails? {
+        if(username != null) {
+            return getUserByEmail(username)
+        }
+        return null
+    }
 }
